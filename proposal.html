@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Hak — Digital Transformation för Samdent Tandvård</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-heading: #061b31;
+      --color-body: #64748d;
+      --color-label: #273951;
+      --color-primary: #533afd;
+      --color-primary-hover: #4434d4;
+      --color-border: #e5edf5;
+      --color-border-purple: #b9b9f9;
+      --color-shadow-blue: rgba(50,50,93,0.25);
+      --color-shadow-black: rgba(0,0,0,0.1);
+      --color-success-bg: rgba(21,190,83,0.2);
+      --color-success-text: #108c3d;
+      --color-brand-dark: #1c1e54;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 300;
+      color: var(--color-heading);
+      background: var(--color-bg);
+      line-height: 1.5;
+      font-feature-settings: "ss01";
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 100;
+      padding: 16px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--color-heading);
+      font-feature-settings: "ss01";
+    }
+
+    .logo span {
+      color: var(--color-primary);
+    }
+
+    .nav-cta {
+      background: var(--color-primary);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 400;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--color-primary-hover);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--color-success-bg);
+      color: var(--color-success-text);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: 24px;
+      border: 1px solid rgba(21,190,83,0.4);
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 300;
+      line-height: 1.03;
+      letter-spacing: -1.4px;
+      margin-bottom: 24px;
+      color: var(--color-heading);
+      font-feature-settings: "ss01";
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--color-body);
+      max-width: 720px;
+      margin: 0 auto 48px;
+      font-feature-settings: "ss01";
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      font-size: 14px;
+      color: var(--color-label);
+      font-weight: 400;
+      margin-bottom: 48px;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: 400;
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-primary);
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: 400;
+      text-decoration: none;
+      font-size: 16px;
+      border: 1px solid var(--color-border-purple);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(83,58,253,0.05);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 80px 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    section:first-of-type {
+      border-top: none;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 40px;
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.8px;
+      color: var(--color-heading);
+      margin-bottom: 16px;
+      font-feature-settings: "ss01";
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--color-body);
+      max-width: 600px;
+      margin: 0 auto;
+      font-feature-settings: "ss01";
+    }
+
+    /* Services Table */
+    .services-table {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--color-shadow-blue) 0px 30px 45px -30px, var(--color-shadow-black) 0px 18px 36px -18px;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      padding: 32px;
+      border-bottom: 1px solid var(--color-border);
+      align-items: start;
+      gap: 24px;
+      transition: background 0.2s ease;
+    }
+
+    .service-row:hover {
+      background: rgba(83,58,253,0.02);
+    }
+
+    .service-row:last-child {
+      border-bottom: none;
+    }
+
+    .service-name {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--color-heading);
+      margin-bottom: 8px;
+      font-feature-settings: "ss01";
+    }
+
+    .service-tag {
+      display: inline-block;
+      background: rgba(83,58,253,0.1);
+      color: var(--color-primary);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 400;
+      margin-top: 8px;
+    }
+
+    .service-desc {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--color-body);
+      font-feature-settings: "ss01";
+    }
+
+    /* Before/After Section */
+    .before-after {
+      background: linear-gradient(135deg, var(--color-brand-dark) 0%, #0d1f33 100%);
+      color: white;
+      border-top: none;
+      border-bottom: none;
+    }
+
+    .before-after .section-title {
+      color: white;
+    }
+
+    .before-after .section-subtitle {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 64px;
+    }
+
+    .comparison-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 32px;
+    }
+
+    .comparison-card.before {
+      border-color: rgba(234,34,97,0.3);
+    }
+
+    .comparison-card.after {
+      border-color: rgba(21,190,83,0.3);
+    }
+
+    .comparison-label {
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    .comparison-card.before .comparison-label {
+      color: #ea2261;
+    }
+
+    .comparison-card.after .comparison-label {
+      color: #15be53;
+    }
+
+    .comparison-list {
+      list-style: none;
+    }
+
+    .comparison-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      line-height: 1.5;
+    }
+
+    .comparison-card.before .comparison-list li::before {
+      content: "✕";
+      color: #ea2261;
+      font-weight: 400;
+    }
+
+    .comparison-card.after .comparison-list li::before {
+      content: "✓";
+      color: #15be53;
+      font-weight: 400;
+    }
+
+    /* Pricing Section */
+    .pricing-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 48px;
+      max-width: 500px;
+      margin: 0 auto;
+      box-shadow: var(--color-shadow-blue) 0px 30px 45px -30px, var(--color-shadow-black) 0px 18px 36px -18px;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .pricing-title {
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--color-heading);
+      margin-bottom: 8px;
+      font-feature-settings: "ss01";
+    }
+
+    .pricing-period {
+      font-size: 14px;
+      color: var(--color-body);
+      font-weight: 400;
+    }
+
+    .pricing-amount {
+      text-align: center;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--color-heading);
+      letter-spacing: -1.4px;
+      font-feature-settings: "ss01", "tnum";
+      margin: 32px 0;
+    }
+
+    .pricing-amount small {
+      font-size: 16px;
+      color: var(--color-body);
+      font-weight: 300;
+    }
+
+    .pricing-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    .pricing-row:last-child {
+      border-bottom: none;
+      padding-top: 24px;
+      margin-top: 24px;
+    }
+
+    .pricing-row .label {
+      color: var(--color-label);
+    }
+
+    .pricing-row .value {
+      color: var(--color-heading);
+      font-weight: 400;
+      text-align: right;
+    }
+
+    .pricing-discount {
+      color: var(--color-primary);
+      font-size: 13px;
+      font-weight: 400;
+      background: rgba(83,58,253,0.1);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* Next Steps */
+    .next-steps-list {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .next-step-item {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 24px;
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      margin-bottom: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .next-step-item:hover {
+      border-color: var(--color-border-purple);
+      box-shadow: var(--color-shadow-blue) 0px 10px 20px -10px;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: var(--color-primary);
+      color: white;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 400;
+      font-feature-settings: "ss01", "tnum";
+      flex-shrink: 0;
+    }
+
+    .step-number.done {
+      background: var(--color-success-text);
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--color-heading);
+      margin-bottom: 4px;
+      font-feature-settings: "ss01";
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--color-body);
+      font-weight: 300;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-brand-dark);
+      color: white;
+      padding: 64px 0 32px;
+      border-top: none;
+    }
+
+    .footer-content {
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .footer-name {
+      font-size: 24px;
+      font-weight: 300;
+      margin-bottom: 8px;
+      font-feature-settings: "ss01";
+    }
+
+    .footer-title {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .footer-contact a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s ease;
+    }
+
+    .footer-contact a:hover {
+      color: white;
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+        letter-spacing: -0.7px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .service-row {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .pricing-card {
+        padding: 32px 24px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-inner">
+      <div class="logo">Cloud <span>Hak</span></div>
+      <a href="#kontakt" class="nav-cta">Börja Nu</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-tag">Digital Transformation för Samdent Tandvård</span>
+      <h1>En komplett digital lösning<br>för tillväxt och patientupplevelse</h1>
+      <p class="hero-subtitle">
+        AI-driven röstreceptionist, chatbot, professionell webbdesign, SEO och social media hantering. 
+        Allt samlat i ett paket så att Samdent syns, konverterar och växa.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">📅 April 2026</div>
+        <div class="hero-meta-item">👤 För Sam, Ägare — Samdent Tandvård</div>
+        <div class="hero-meta-item">✍️ Nima Hakimmaani — Cloud Hak</div>
+      </div>
+      <div class="btn-group">
+        <a href="#tjanster" class="btn-primary">Se Tjänsterna</a>
+        <a href="#pris" class="btn-ghost">Se Pris</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="tjanster">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Alternativ 1 — Marknadsföringspaket</div>
+        <h2 class="section-title">Allt en modern tandläkarmottagning behöver</h2>
+        <p class="section-subtitle">Vanligtvis implementerat gradvis under en period av 3 månader</p>
+      </div>
+      <div class="services-table">
+        <div class="service-row">
+          <div>
+            <div class="service-name">AI Röstreceptionist</div>
+            <span class="service-tag">24/7</span>
+          </div>
+          <div class="service-desc">
+            En AI-telefonagent dygnet runt som svarar på varje samtal, bokar tid och svarar på frågor 
+            på svenska och engelska. Inget samtal går obesvarat.
+          </div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">AI Chatbot</div>
+            <span class="service-tag">Automatisering</span>
+          </div>
+          <div class="service-desc">
+            Omedelbara, konsekventa svar via WhatsApp, sociala medier och er hemsida. 
+            Kvalificerar Invisalign-leads och dirigerar heta prospekter till ert team.
+          </div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Cloud Hak Anpassat CRM</div>
+            <span class="service-tag">Patienthantering</span>
+          </div>
+          <div class="service-desc">
+            Centraliserad patienthantering med automatiserade födelsedagsmeddelanden, 
+            tidsbokningspåminnelser och marknadsföringskampanjer. Allt hanteras åt er.
+          </div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">AEO Optimering</div>
+            <span class="service-tag">AI-upptäckt</span>
+          </div>
+          <div class="service-desc">
+            Vi ser till att ChatGPT, Google SGE och Siri rekommenderar Samdent när patienter 
+            söker efter Invisalign eller tandläkare i Stockholm.
+          </div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Rykteshantering</div>
+            <span class="service-tag">5-stjärnigt</span>
+          </div>
+          <div class="service-desc">
+            Automatiserade recensionsförfrågningar efter varje besök, Google-recensioner 
+            övervakas och besvaras. Bygger den 5-stjärniga profilen.
+          </div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Social Media Hantering</div>
+            <span class="service-tag">Innehåll</span>
+          </div>
+          <div class="service-desc">
+            1-3 inlägg per vecka inklusive utbildande innehåll, före/efter-bilder 
+            och kampanjer. Gör Samdent synlig för nya patienter.
+          </div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Professionell Webbdesign</div>
+            <span class="service-tag">Konvertering</span>
+          </div>
+          <div class="service-desc">
+            Modern, mobilanpassad hemsida med bokningsintegration, före/efter-galleri, 
+            Invisalign-sektion, tvåspråkig (SV/EN). Konverteringsoptimerad.
+          </div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Sökmotoroptimering (SEO)</div>
+            <span class="service-tag">Organisk tillväxt</span>
+          </div>
+          <div class="service-desc">
+            Lokal SEO för Stockholm med on-page optimering, Google Business Profile, 
+            nyckelordsstrategi och innehållsoptimering. Driver organisk trafik och synlighet.
+          </div>
+        </div>
+        <div class="service-row" style="background: rgba(83,58,253,0.03);">
+          <div>
+            <div class="service-name">Betald Annonsering</div>
+            <span class="service-tag" style="background: rgba(234,34,97,0.1); color: #ea2261;">Tilläggstjänst</span>
+          </div>
+          <div class="service-desc">
+            Riktade Google- och Meta-annonser för att snabbare driva Invisalign-bokningar. 
+            Perfekt om du vill accelerera behandlingsbokningar utöver organisk tillväxt.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before/After -->
+  <section class="before-after">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" style="color: rgba(255,255,255,0.6);">Förändring</div>
+        <h2 class="section-title">Vad förändras för dig</h2>
+        <p class="section-subtitle">Från stress och manuellt arbete till automatisering och frihet</p>
+      </div>
+      <div class="comparison-grid">
+        <div class="comparison-card before">
+          <div class="comparison-label">Innan</div>
+          <ul class="comparison-list">
+            <li>Stress och oroligheter om missade uppföljningar</li>
+            <li>Hög administration och manuellt arbete</li>
+            <li>Kliniken behöver din närvaro dygnet runt</li>
+            <li>Missade samtal och förlorade patienter</li>
+            <li>Svårt att fokusera på tillväxt</li>
+          </ul>
+        </div>
+        <div class="comparison-card after">
+          <div class="comparison-label">Efter</div>
+          <ul class="comparison-list">
+            <li>Sova bättre — inga fler kl 23.00 oroligheter</li>
+            <li>Njuta av dina helger — ingenting glöms bort</li>
+            <li>Vara närvarande med familjen — när du är hemma, är du hemma</li>
+            <li>Arbeta på företaget, inte i det</li>
+            <li>Bygga en attraktiv och säljbar business för framtiden</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pris">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Investering</div>
+        <h2 class="section-title">Transparent prissättning</h2>
+        <p class="section-subtitle">Inga dolda kostnader. Allt inkluderat.</p>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Marknadsföringspaket</h3>
+          <p class="pricing-period">Månatlig avgift + engångsuppläggning</p>
+        </div>
+        <div class="pricing-amount">
+          32 500 <small>SEK/mån</small>
+        </div>
+        <div class="pricing-row">
+          <span class="label">Uppläggning (engångskostnad)</span>
+          <span class="value">37 500 SEK <span class="pricing-discount">28 125 SEK med 25% rabatt</span></span>
+        </div>
+        <div class="pricing-row" style="border-top: 1px solid var(--color-border); padding-top: 24px;">
+          <span class="label">Totalt uppstartspris</span>
+          <span class="value" style="color: var(--color-primary); font-weight: 500;">28 125 SEK</span>
+        </div>
+        <div class="pricing-row">
+          <span class="label">Därefter</span>
+          <span class="value">32 500 SEK/mån</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Process</div>
+        <h2 class="section-title">Nästa steg</h2>
+        <p class="section-subtitle">Så här går vi vidare</p>
+      </div>
+      <div class="next-steps-list">
+        <div class="next-step-item">
+          <div class="step-number done">✓</div>
+          <div class="step-content">
+            <div class="step-title">En timmes samtal</div>
+            <div class="step-desc">Klargjort, vi har gått djupt i din vision och din affärsstruktur</div>
+          </div>
+        </div>
+        <div class="next-step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-title">Vi bygger en plan</div>
+            <div class="step-desc">Anpassad för Samdents specifika mål och tidsram</div>
+          </div>
+        </div>
+        <div class="next-step-item" style="opacity: 0.6;">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-title">Implementering</div>
+            <div class="step-desc">Gradvis lansering under 3 månader</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="kontakt">
+    <div class="container">
+      <div class="footer-content">
+        <h3 class="footer-name">Nima Hakimmaani</h3>
+        <p class="footer-title">Cloud Hak — AI Agency</p>
+        <div class="footer-contact">
+          <a href="mailto:info@cloud-hak.com">info@cloud-hak.com</a>
+          <a href="https://cloud-hak.com" target="_blank">cloud-hak.com</a>
+        </div>
+        <p class="footer-copyright">© 2026 Cloud Hak. Alla rättigheter förbehållna.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
